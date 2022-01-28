@@ -1,0 +1,34 @@
+version: '3.9'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: bought_it
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 9Dt_bP\7DEBgw-^9W~!Vu!45
+      PG_DATA: /var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    container_name: bought_it_database
+  app:
+    container_name: bought_it_app
+    image: nestjs-api-app:1.0.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: yarn start:prod
+    ports:
+      - 3000:3000
+      - 9229:9229
+    networks:
+      - nestjs-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+volumes:
+  pgdata:
+networks:
+  nestjs-network:
