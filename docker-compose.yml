@@ -1,0 +1,14 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    # restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: organizeit
+      MONGO_INITDB_ROOT_PASSWORD: 63d167d2a7e27ccfafdb576c9b82b865
+      MONGO_INITDB_DATABASE: organize-it-db
+    ports:
+      - 27017:27017
