@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
 import { MONGO_DB_URL } from '../../../utils/constants';
+import { AppError } from '../../errors/appError';
 
 export async function connectDB() {
   try {
     if (!MONGO_DB_URL) {
-      throw new Error('Falta url do banco');
+      throw new AppError('Falta url do banco',500);
     }
     await mongoose.connect(MONGO_DB_URL);
 
