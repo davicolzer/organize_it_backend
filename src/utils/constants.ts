@@ -1,1 +1,4 @@
-export const PORT = process.env.PORT || 3333;
+import 'dotenv/config';
+
+export const PORT = process.env.PORT;
+export const MONGO_DB_URL = process.env.MONGO_DB_URL;
